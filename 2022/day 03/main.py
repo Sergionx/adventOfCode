@@ -11,6 +11,37 @@ def main():
     txt = readAdventInput("2022", "03")
     findCommonItemInHalves(txt)
     findCommonItemIn3Groups(txt)
+    turbofindCommonItemIn3Groups(txt)
+
+#efficient version
+def turbofindCommonItemIn3Groups(txt: str):
+    lines = txt.splitlines()  
+    total = 0
+    count3Groups = 0
+
+    encountered = {}
+    for line in lines:
+        count3Groups += 1
+
+        if count3Groups == 1:
+            encountered = {item: 1 for item in line}
+        
+        elif count3Groups == 2:
+            used = set()
+            for item in line:
+                if (encountered.get(item) is not None and item not in used):
+                  encountered[item] += 1
+                  used.add(item)              
+            
+        elif count3Groups == 3:
+            for item in line:
+                if encountered.get(item) == 2:
+                    total += getPriority(item)
+                    break
+
+            count3Groups = 0
+  
+    print(f"The turbo total priority by 3 groups is {total}")
 
 def findCommonItemIn3Groups(txt: str):
     lines = txt.splitlines()  
