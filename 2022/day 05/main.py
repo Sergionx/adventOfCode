@@ -38,7 +38,7 @@ def main():
     populateStacks(stacks, crateList)
 
     for i in range(startInstructions + 1, len(lines)):
-        readInstruction(lines[i], stacks)
+        readInstruction9001(lines[i], stacks)
     
     for stack in stacks:
         print(stack.peek())
@@ -67,7 +67,7 @@ def populateStacks(stacks: list[Stack], crateList: list[str]):
             if characters[i] != " ":
                 stacks[i // 4].push(characters[i])
 
-def readInstruction(instructionLine: str, stacks: list[Stack]):
+def readInstruction9000(instructionLine: str, stacks: list[Stack]):
     instruction = instructionLine.split(" ")
     numberCrates = int(instruction[1])
     fromStack = int(instruction[3])
@@ -75,5 +75,22 @@ def readInstruction(instructionLine: str, stacks: list[Stack]):
 
     for _ in range(numberCrates):
         stacks[toStack - 1].push(stacks[fromStack - 1].pop())
+
+def readInstruction9001(instructionLine: str, stacks: list[Stack]):
+    instruction = instructionLine.split(" ")
+    numberCrates = int(instruction[1])
+    fromStack = int(instruction[3])
+    toStack = int(instruction[5])
+
+    if numberCrates == 1:
+        stacks[toStack - 1].push(stacks[fromStack - 1].pop())
+        return
+
+    auxList = []
+    for _ in range(numberCrates):
+        auxList.append(stacks[fromStack - 1].pop())
+    
+    for i in range(len(auxList) -1,-1, -1):
+        stacks[toStack - 1].push(auxList.pop(i))
 
 main()
