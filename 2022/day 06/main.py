@@ -24,7 +24,7 @@ def findPacketMarker(txt: str) -> int:
 
 def findeMessageMarker(txt: str) -> int:
     for i in range(0, len(txt) - 13):
-        listChars = [i for i in txt[i:i+14]]
+        listChars = txt[i:i+14]
         if checkAllDifferent(listChars):
             return i + 14
 
