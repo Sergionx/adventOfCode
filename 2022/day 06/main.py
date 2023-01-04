@@ -6,6 +6,7 @@ parent = os.path.dirname(current)
 sys.path.append(parent)
 
 from helpers.files import readAdventInput, readAdventTestInput
+from helpers.validators import checkAllDifferent
 
 def main():
     txt = readAdventInput("2022", "06").strip()
@@ -27,12 +28,7 @@ def findeMessageMarker(txt: str) -> int:
         if checkAllDifferent(listChars):
             return i + 14
 
-def checkAllDifferent(listChars: list[any]) -> bool:
-    for i in range(0, len(listChars) - 1):
-        for j in range(i + 1, len(listChars)):
-            if listChars[i] == listChars[j]:
-                return False
-    return True
+
 
 def checkAllDifferentWordy(char1: str, char2: str, char3: str, char4: str) -> bool:
     if char1 != char2 and char1 != char3 and char1 != char4:
