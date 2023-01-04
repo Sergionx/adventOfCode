@@ -1,4 +1,3 @@
-from io import TextIOWrapper
 import os
 
 def readAdventInput(year: str, day: str) -> str:
