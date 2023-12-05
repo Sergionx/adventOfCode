@@ -6,28 +6,7 @@ parent = os.path.dirname(current)
 sys.path.append(parent)
 
 from helpers.files import readAdventInput, readAdventTestInput
-
-class Stack:
-    def __init__(self):
-        self.items = []
-
-    def show(self):
-        print(self.items)
-
-    def isEmpty(self):
-        return self.items == []
-
-    def push(self, item):
-        self.items.append(item)
-
-    def pop(self):
-        return self.items.pop()
-
-    def peek(self):
-        return self.items[-1]
-
-    def size(self):
-        return len(self.items)
+from helpers.dataStructures import StackNoNode as Stack
 
 def main():
     txt = readAdventInput("2022", "05")
@@ -42,7 +21,6 @@ def main():
     
     for stack in stacks:
         print(stack.peek())
-
 
 def createStackList(lines: list[str], crateList: list[str]) -> list[Stack]:
     stacks = []
